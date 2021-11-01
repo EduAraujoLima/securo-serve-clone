@@ -1,0 +1,92 @@
+$background: rgb(63, 67, 94);
+$red: rgb(116, 20, 20);
+$green: rgb(20, 116, 20);
+$dark-bg: rgb(10, 10, 10);
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin setBgImage($imageUrl) {
+  background-image: url($imageUrl);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  background-color: $background;
+  height: 100vh;
+  @include flex-center;
+
+  .jobs {
+    .col-md-4 {
+      .jobs__card {
+        height: 350px;
+        border: 3px solid $red;
+        cursor: pointer;
+        position: relative;
+
+        &::before {
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 10px;
+          top: 0;
+          left: 0;
+          background-color: $red;
+        }
+
+        &::after {
+          position: absolute;
+          width: 100%;
+          height: 50px;
+          bottom: 0;
+          left: 0;
+          background-color: $dark-bg;
+          text-align: center;
+          color: white;
+          text-transform: uppercase;
+          font-size: 1.4rem;
+          padding: 0.5rem;
+          font-weight: 200;
+        }
+
+        &:hover {
+          border: 3px solid $green;
+          transform: scale(1.005);
+
+          &::before {
+            background-color: $green;
+          }
+        }
+      }
+      &:nth-child(1) {
+        .jobs__card {
+          @include setBgImage("../images/muamba.jpeg");
+          &::after {
+            content: "Special Cargo";
+          }
+        }
+      }
+      &:nth-child(2) {
+        .jobs__card {
+          @include setBgImage("../images/vehicle-cargo.png");
+          &::after {
+            content: "Vehicle Cargo";
+          }
+        }
+      }
+      &:nth-child(3) {
+        .jobs__card {
+          @include setBgImage("../images/special-vehicle.jpeg");
+          &::after {
+            content: "Special Vehicle";
+          }
+        }
+      }
+    }
+  }
+}
